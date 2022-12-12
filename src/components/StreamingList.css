@@ -1,0 +1,23 @@
+.Thumbnail-box {
+    position: relative;
+    padding: 0;
+}
+
+.Thumbnail-img {
+    padding: 0;
+}
+
+.Thumbnail-time {
+    width: auto;
+    height: auto;
+    background-color: black;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.5rem;
+
+    position: absolute;
+    top: 0;
+    right: 0;
+}

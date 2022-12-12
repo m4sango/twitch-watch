@@ -26,8 +26,10 @@
     "tabs",
     "identity",
     "webRequest",
-    "notifications",
-    "*.api.twitch.tv/*"
+    "notifications"
+  ],
+  "host_permissions": [
+    "https://*.api.twitch.tv/*"
   ],
   "content_scripts": [
     {

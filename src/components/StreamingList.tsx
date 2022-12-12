@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {CircularProgress, List, ListItem, ListItemButton, ListItemText, Typography} from "@mui/material";
 import {getToken} from "../TokenManager";
+import "./StreamingList.css"
 
 type Props = {
     userId: string
@@ -52,13 +53,21 @@ export const StreamingList = (props: Props) => {
             <>
                 <List disablePadding>
                     {streams.map(s => {
+                        const url = `https://twitch.tv/${s.user_login}`
                         return (
                             <ListItem divider disablePadding disableGutters>
-                                <ListItemButton>
-                                    <img
-                                        src={s.thumbnail_url.replace("{width}", IMAGE_WIDTH.toString()).replace("{height}", IMAGE_HEIGHT.toString())}
-                                        srcSet={s.thumbnail_url.replace("{width}", IMAGE_WIDTH.toString()).replace("{height}", IMAGE_HEIGHT.toString()) + " 2x"}
-                                    />
+                                <ListItemButton component="a" href={url} target="_blank"
+                                                rel="noopener noreferrer">
+                                    <div className={"Thumbnail-box"}>
+                                        <img
+                                            className={"Thumbnail-img"}
+                                            src={s.thumbnail_url.replace("{width}", IMAGE_WIDTH.toString()).replace("{height}", IMAGE_HEIGHT.toString())}
+                                            srcSet={s.thumbnail_url.replace("{width}", IMAGE_WIDTH.toString()).replace("{height}", IMAGE_HEIGHT.toString()) + " 2x"}
+                                        />
+                                        <div className="Thumbnail-time">
+                                            <p>{s.started_at}</p>
+                                        </div>
+                                    </div>
                                     <ListItemText
                                         sx={{marginTop: "0", marginBottom: "0"}}
                                         primary={s.user_name}
@@ -66,7 +75,6 @@ export const StreamingList = (props: Props) => {
                                             <React.Fragment>
                                                 <Typography
                                                     variant="body2"
-                                                    color="text.primary"
                                                 >{s.title}
                                                 </Typography>
                                                 <Typography
